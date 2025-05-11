@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">БМИ Калкулатор</string>
+    <string name="select_gender">Изберете Пол</string>
+    <string name="male">Машки</string>
+    <string name="female">Женски</string>
+    <string name="height">Висина</string>
+    <string name="weight">Тежина</string>
+    <string name="age">Години</string>
+    <string name="calculate_bmi">Пресметај БМИ</string>
+    <string name="invalid_weight">Невалидна тежина</string>
+    <string name="invalid_age">Невалидна возраст</string>
+    <string name="select_height">Изберете висина</string>
+    <string name="re_calculate_bmi">Пресметај одново БМИ</string>
+</resources>
