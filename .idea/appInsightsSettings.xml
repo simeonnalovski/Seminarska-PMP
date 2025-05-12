@@ -8,10 +8,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="PLACEHOLDER" />
-                  <option name="mobileSdkAppId" value="" />
-                  <option name="projectId" value="" />
-                  <option name="projectNumber" value="" />
+                  <option name="appId" value="com.ssr.bmicalculator" />
+                  <option name="mobileSdkAppId" value="1:757864943992:android:5fbf98e75afe7f3538388d" />
+                  <option name="projectId" value="bmi-calculator-ded6c" />
+                  <option name="projectNumber" value="757864943992" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />

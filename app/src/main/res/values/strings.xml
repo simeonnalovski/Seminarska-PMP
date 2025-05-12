@@ -6,6 +6,7 @@
     <string name="theme_switch_label" translatable="false">Dark Mode</string>
 
     <string name="app_name">BMI Calculator</string>
+    <string name="default_web_client_id">757864943992-r7a2vfrkcgu7bs6c70gc8grvjlmhum7c.apps.googleusercontent.com</string>
     <string name="select_gender">Select Gender</string>
     <string name="male">Male</string>
     <string name="female">Female</string>
@@ -17,6 +18,25 @@
     <string name="invalid_age">Invalid Age</string>
     <string name="select_height">Select Height</string>
     <string name="re_calculate_bmi">Re-Calculate BMI</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="register">Register</string>
+    <string name="logText">Already have an account? Login</string>
+    <string name="logTitle">Login to BMI calculator</string>
+    <string name="loginGoogle">Login with Google</string>
+    <string name="loginEmailPass">Login with Email and Password</string>
+    <string name="loginAnon">Login Anonymously</string>
+    <string name="regNewText">Don\'t have an account? Register</string>
+    <string name="underweight">Underweight</string>
+    <string name="hweight">Healthful Weight</string>
+    <string name="overweight">Overweight</string>
+    <string name="obsClass1">Obesity Class 1</string>
+    <string name="obsClass2">Obesity Class 2</string>
+    <string name="exObsClass3">Extreme Obesity Class 3</string>
+
+
+
+
 
 
 </resources>

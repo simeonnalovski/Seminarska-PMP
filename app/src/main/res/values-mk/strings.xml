@@ -11,4 +11,19 @@
     <string name="invalid_age">Невалидна возраст</string>
     <string name="select_height">Изберете висина</string>
     <string name="re_calculate_bmi">Пресметај одново БМИ</string>
+    <string name="email">Е-маил</string>
+    <string name="password">Лозинка</string>
+    <string name="register">Регистрирај се</string>
+    <string name="logText">Веќе имаш профил? Најави се</string>
+    <string name="logTitle">Најави се на БМИ калкулаторот</string>
+    <string name="loginGoogle">Најави се преку Google</string>
+    <string name="loginEmailPass">Најави се со е-маил и лозинка</string>
+    <string name="loginAnon">Најависе анонимно</string>
+    <string name="regNewText">Немаш профил? Регистрирај се</string>
+    <string name="underweight">Премала тежина</string>
+    <string name="hweight">Здрава тежина</string>
+    <string name="overweight">Пркумерана тежина</string>
+    <string name="obsClass1">Гојазност Класа 1</string>
+    <string name="obsClass2">Гојазност Класа 2</string>
+    <string name="exObsClass3">Екстеремна Гојазност Класа  3</string>
 </resources>

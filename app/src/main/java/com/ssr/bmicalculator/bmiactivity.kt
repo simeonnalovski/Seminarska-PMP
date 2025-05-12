@@ -42,39 +42,39 @@ class bmiactivity : AppCompatActivity() {
         if (BMI != null) {
             if(BMI<=18.4){
                 binding.bmiValue.text = intBMI
-                binding.bmiCategory.text = "Underweight"
+                binding.bmiCategory.text = getString(R.string.underweight)
                 binding.imageView.setImageResource(R.drawable.warn)
             }
             else if(BMI in 18.5..24.99){
                 binding.bmiValue.text = intBMI
-                binding.bmiCategory.text = "Healthful Weight"
+                binding.bmiCategory.text = getString(R.string.hweight)
             }
             else if(BMI in 25.0..29.99){
                 binding.imageView.setImageResource(R.drawable.warn)
                 binding.bmiValue.text = intBMI
-                binding.bmiCategory.text = "Overweight"
+                binding.bmiCategory.text = getString(R.string.overweight)
             }
             else if(BMI in 30.0..34.99){
                 binding.imageView.setImageResource(R.drawable.declined)
                 binding.bmiValue.text = intBMI
-                binding.bmiCategory.text = "Obesity Class I"
+                binding.bmiCategory.text = getString(R.string.obsClass1)
             }
             else if(BMI in 35.0..39.99){
                 binding.imageView.setImageResource(R.drawable.declined)
                 binding.bmiValue.text = intBMI
-                binding.bmiCategory.text = "Obesity Class II"
+                binding.bmiCategory.text = getString(R.string.obsClass2)
             }
             else if(BMI >= 40.0){
                 binding.imageView.setImageResource(R.drawable.declined)
                 binding.bmiValue.text = intBMI
-                binding.bmiCategory.text = "Extreme Obesity Class III"
+                binding.bmiCategory.text = getString(R.string.exObsClass3)
             }
         }
         binding.genderText.text = gender
         // Access the view with ID "recalculateBMI"
         val recalculateBMIButton = binding.recalculateBMI
 
-        recalculateBMIButton.setOnClickListener(){
+        recalculateBMIButton.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
