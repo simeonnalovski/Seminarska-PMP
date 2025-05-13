@@ -12,7 +12,20 @@
           "package_name": "com.ssr.bmicalculator"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "757864943992-5h27ja1ohtfleocas0vbppqmklquctb5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ssr.bmicalculator",
+            "certificate_hash": "4ecb4e126261ef4ad271744bec8bc2d65d022848"
+          }
+        },
+        {
+          "client_id": "757864943992-r7a2vfrkcgu7bs6c70gc8grvjlmhum7c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyB5i2MsIQjM2Rj4oBfnpyINXt-E8DsHsBs"
@@ -20,7 +33,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "757864943992-r7a2vfrkcgu7bs6c70gc8grvjlmhum7c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }
