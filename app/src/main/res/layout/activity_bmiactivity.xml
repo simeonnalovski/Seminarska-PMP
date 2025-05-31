@@ -71,17 +71,16 @@
     </RelativeLayout>
 
     <android.widget.Button
+        android:id="@+id/recalculateBMI"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:id="@+id/recalculateBMI"
-        android:layout_marginBottom="-80dp"
-        android:text="Re-Calculate BMI"
-        android:textColor="@color/white"
-        android:layout_marginRight="20dp"
+        android:layout_alignBottom="@id/contentLayout"
         android:layout_marginLeft="20dp"
-        android:textStyle="bold"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="-80dp"
         android:background="@drawable/buttonbackground"
-        android:layout_alignBottom="@id/contentLayout">
-    </android.widget.Button>
+        android:text="@string/re_calculate_bmi"
+        android:textColor="@color/white"
+        android:textStyle="bold"></android.widget.Button>
 
 </RelativeLayout>

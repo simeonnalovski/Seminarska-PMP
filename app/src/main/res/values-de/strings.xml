@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">BMI Rechner</string>
+    <string name="select_gender">Geschlecht auswählen</string>
+    <string name="male">Männlich</string>
+    <string name="female">Weiblich</string>
+    <string name="height">Größe</string>
+    <string name="weight">Gewicht</string>
+    <string name="age">Alter</string>
+    <string name="calculate_bmi">BMI berechnen</string>
+    <string name="invalid_weight">Ungültiges Gewicht</string>
+    <string name="invalid_age">Ungültiges Alter</string>
+    <string name="select_height">Größe auswählen</string>
+    <string name="re_calculate_bmi">BMI neu berechnen</string>
+    <string name="email">E-Mail</string>
+    <string name="password">Passwort</string>
+    <string name="register">Registrieren</string>
+    <string name="logText">Sie haben bereits ein Konto? Anmelden</string>
+    <string name="logTitle">Anmelden beim BMI Rechner</string>
+    <string name="loginGoogle">Mit Google anmelden</string>
+    <string name="loginEmailPass">Mit E-Mail und Passwort anmelden</string>
+    <string name="loginAnon">Anonym anmelden</string>
+    <string name="regNewText">Sie haben noch kein Konto? Registrieren</string>
+    <string name="underweight">Untergewicht</string>
+    <string name="hweight">Gesundes Gewicht</string>
+    <string name="overweight">Übergewicht</string>
+    <string name="obsClass1">Adipositas Grad 1</string>
+    <string name="obsClass2">Adipositas Grad 2</string>
+    <string name="exObsClass3">Extreme Adipositas Grad 3</string>
+    <string name="take_photo">Foto aufnehmen</string>
+    <string name="start_capture">Aufnahme starten</string>
+    <string name="stop_capture">Aufnahme stoppen</string>
+</resources>

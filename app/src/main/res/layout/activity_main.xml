@@ -43,8 +43,8 @@
         android:background="@drawable/malefemalenotfocus">
 
         <ImageView
-            android:layout_width="170px"
-            android:layout_height="170px"
+            android:layout_width="170dp"
+            android:layout_height="170dp"
             android:layout_above="@+id/textMale"
             android:layout_centerInParent="true"
             android:layout_marginBottom="20dp"
@@ -61,7 +61,7 @@
             android:text="@string/male"
             android:textAlignment="center"
             android:textColor="@color/white"
-            android:textSize="18dp"></TextView>
+            android:textSize="18sp"></TextView>
 
     </RelativeLayout>
 
@@ -253,7 +253,7 @@
             android:text="@string/height"
             android:textAlignment="center"
             android:textColor="@color/white"
-            android:textSize="20dp"
+            android:textSize="20sp"
             android:textStyle="bold"></TextView>
 
         <TextView
@@ -293,6 +293,12 @@
             android:layout_marginBottom="20dp"
             android:progressTint="#F30505"></SeekBar>
 
+        <androidx.camera.view.PreviewView
+            android:id="@+id/viewFinder"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center" />
+
     </RelativeLayout>
 
     <android.widget.Button
@@ -307,5 +313,38 @@
         android:text="@string/calculate_bmi"
         android:textColor="@color/white"
         android:textStyle="bold"></android.widget.Button>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- Take Photo Button (on the left) -->
+
+        <!-- Start Capture Button (on the right) -->
+        <Button
+            android:id="@+id/image_capture_button"
+            android:layout_width="110dp"
+            android:layout_height="60dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginBottom="12dp"
+            android:elevation="2dp"
+            android:text="@string/take_photo"
+            app:layout_constraintBottom_toBottomOf="@id/start_camera_button"
+            app:layout_constraintEnd_toEndOf="@id/start_camera_button"
+            app:layout_constraintEnd_toStartOf="@id/start_camera_button" />
+
+        <Button
+            android:id="@+id/start_camera_button"
+            android:layout_width="110dp"
+            android:layout_height="60dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="53dp"
+            android:elevation="2dp"
+            android:text="@string/start_capture"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </RelativeLayout>

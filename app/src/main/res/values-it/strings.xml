@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">Calcolatore BMI</string>
+    <string name="select_gender">Seleziona genere</string>
+    <string name="male">Maschio</string>
+    <string name="female">Femmina</string>
+    <string name="height">Altezza</string>
+    <string name="weight">Peso</string>
+    <string name="age">Età</string>
+    <string name="calculate_bmi">Calcola BMI</string>
+    <string name="invalid_weight">Peso non valido</string>
+    <string name="invalid_age">Età non valida</string>
+    <string name="select_height">Seleziona altezza</string>
+    <string name="re_calculate_bmi">Ricalcola BMI</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="register">Registrati</string>
+    <string name="logText">Hai già un account? Accedi</string>
+    <string name="logTitle">Accedi al calcolatore BMI</string>
+    <string name="loginGoogle">Accedi con Google</string>
+    <string name="loginEmailPass">Accedi con Email e Password</string>
+    <string name="loginAnon">Accedi in modo anonimo</string>
+    <string name="regNewText">Non hai un account? Registrati</string>
+    <string name="underweight">Sottopeso</string>
+    <string name="hweight">Peso Salutare</string>
+    <string name="overweight">Sovrappeso</string>
+    <string name="obsClass1">Obesità Classe 1</string>
+    <string name="obsClass2">Obesità Classe 2</string>
+    <string name="exObsClass3">Obesità Estrema Classe 3</string>
+    <string name="take_photo">Scatta foto</string>
+    <string name="start_capture">Avvia acquisizione</string>
+    <string name="stop_capture">Interrompi acquisizione</string>
+</resources>

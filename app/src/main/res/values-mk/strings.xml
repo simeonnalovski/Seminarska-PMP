@@ -26,4 +26,7 @@
     <string name="obsClass1">Гојазност Класа 1</string>
     <string name="obsClass2">Гојазност Класа 2</string>
     <string name="exObsClass3">Екстеремна Гојазност Класа  3</string>
+    <string name="take_photo">Сликај</string>
+    <string name="start_capture">Снимај</string>
+    <string name="stop_capture">Прекини снимање</string>
 </resources>

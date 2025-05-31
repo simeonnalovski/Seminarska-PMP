@@ -1,32 +1,51 @@
 package com.ssr.bmicalculator
 
+import android.Manifest
+import android.content.ContentValues
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.content.res.Configuration
+import android.os.Build
 import android.os.Bundle
+import android.provider.MediaStore
+import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.SeekBar
 import android.widget.Spinner
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.camera.core.CameraSelector
+import androidx.camera.core.ImageCapture
+import androidx.camera.core.ImageCaptureException
+import androidx.camera.core.Preview
+import androidx.camera.lifecycle.ProcessCameraProvider
+import androidx.camera.view.PreviewView
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
+import com.google.firebase.auth.FirebaseAuth
 import com.ssr.bmicalculator.data.local.dao.LanguagePreferenceDao
-import com.ssr.bmicalculator.data.local.db.AppDatabase
 import com.ssr.bmicalculator.data.local.dao.UserDataDao
+import com.ssr.bmicalculator.data.local.db.AppDatabase
 import com.ssr.bmicalculator.data.local.entity.LanguagePreference
 import com.ssr.bmicalculator.data.local.entity.UserData
 import com.ssr.bmicalculator.databinding.ActivityMainBinding
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import java.util.*
-import com.google.firebase.auth.FirebaseAuth
+import java.text.SimpleDateFormat
+import java.util.Locale
+import java.util.concurrent.ExecutorService
+import java.util.concurrent.Executors
 
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    private var imageCapture: ImageCapture? = null
+    private lateinit var cameraExecutor: ExecutorService
+
     private var intWeight: Int = 55
     private var intAge: Int = 23
     var currentProgress: Int = 0
@@ -34,6 +53,7 @@ class MainActivity : AppCompatActivity() {
     private var typeofUser: String = "0"
     private lateinit var languageDao: LanguagePreferenceDao
     private lateinit var userDataDao: UserDataDao
+    private lateinit var viewFinder: PreviewView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,6 +61,31 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        cameraExecutor = Executors.newSingleThreadExecutor()
+        viewFinder = findViewById(R.id.viewFinder)
+        binding.viewFinder?.visibility = View.GONE
+        binding.startCameraButton?.isEnabled  = false
+
+
+        if (allPermissionsGranted()) {
+            binding.startCameraButton?.isEnabled = true
+        } else {
+            ActivityCompat.requestPermissions(
+                this, REQUIRED_PERMISSIONS, REQUEST_CODE_PERMISSIONS)
+        }
+
+        binding.startCameraButton?.setOnClickListener {
+            startCamera()
+            binding.viewFinder?.visibility = View.VISIBLE
+        }
+
+        binding.imageCaptureButton?.setOnClickListener {
+            takePhoto()
+        }
+
+
+        cameraExecutor = Executors.newSingleThreadExecutor()
+
 
         languageDao = AppDatabase.getInstance(application).languagePreferenceDao()
         userDataDao = AppDatabase.getInstance(application).userDataDao()
@@ -75,6 +120,8 @@ class MainActivity : AppCompatActivity() {
                     val selectedLang = when (position) {
                         0 -> "en"
                         1 -> "mk"
+                        2 -> "de"
+                        3 -> "it"
                         else -> "en"
                     }
 
@@ -236,9 +283,97 @@ class MainActivity : AppCompatActivity() {
         return when (lang) {
             "en" -> 0
             "mk" -> 1
+            "de" -> 2
+            "it" -> 3
             else -> 0
         }
     }
+    private fun startCamera() {
+        val cameraProviderFuture = ProcessCameraProvider.getInstance(this)
+
+        cameraProviderFuture.addListener({
+            val cameraProvider = cameraProviderFuture.get()
+            val preview = Preview.Builder().build().also {
+                it.setSurfaceProvider(binding.viewFinder?.surfaceProvider)
+            }
+
+            val imageCapture = ImageCapture.Builder().build()
+
+            val cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
+
+            try {
+                cameraProvider.unbindAll()
+                cameraProvider.bindToLifecycle(
+                    this, cameraSelector, preview, imageCapture
+                )
+
+                binding.viewFinder?.visibility = View.VISIBLE
+
+                // Optional: store imageCapture reference if needed elsewhere
+                this.imageCapture = imageCapture
+
+            } catch (exc: Exception) {
+                Log.e("CameraX", "Use case binding failed", exc)
+            }
+        }, ContextCompat.getMainExecutor(this))
+    }
+
+
+    private fun takePhoto() {
+        val imageCapture = imageCapture ?: return
+
+        val name = SimpleDateFormat(FILENAME_FORMAT, Locale.US)
+            .format(System.currentTimeMillis())
+        val contentValues = ContentValues().apply {
+            put(MediaStore.MediaColumns.DISPLAY_NAME, name)
+            put(MediaStore.MediaColumns.MIME_TYPE, "image/jpeg")
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                put(MediaStore.Images.Media.RELATIVE_PATH, "Pictures/CameraX-App")
+            }
+        }
+
+        val outputOptions = ImageCapture.OutputFileOptions
+            .Builder(contentResolver,
+                MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+                contentValues)
+            .build()
+
+        imageCapture.takePicture(
+            outputOptions, ContextCompat.getMainExecutor(this), object : ImageCapture.OnImageSavedCallback {
+                override fun onError(exc: ImageCaptureException) {
+                    Toast.makeText(baseContext, "Photo capture failed: ${exc.message}", Toast.LENGTH_SHORT).show()
+                }
+
+                override fun onImageSaved(output: ImageCapture.OutputFileResults) {
+                    Toast.makeText(baseContext, "Photo saved successfully", Toast.LENGTH_SHORT).show()
+                    binding.viewFinder?.visibility = View.GONE // Hide preview after capture
+                    binding.startCameraButton?.visibility = View.VISIBLE
+                    binding.calculateBMI?.visibility = View.VISIBLE
+                }
+            }
+        )
+    }
+
+    private fun allPermissionsGranted() = REQUIRED_PERMISSIONS.all {
+        ContextCompat.checkSelfPermission(baseContext, it) == PackageManager.PERMISSION_GRANTED
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int, permissions: Array<String>, grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+
+        if (requestCode == REQUEST_CODE_PERMISSIONS) {
+            if (allPermissionsGranted()) {
+                binding.startCameraButton?.isEnabled = true
+            } else {
+                Toast.makeText(this, "Permissions not granted", Toast.LENGTH_SHORT).show()
+                finish()
+            }
+        }
+    }
+
+
     override fun onStart() {
         super.onStart()
         val user = FirebaseAuth.getInstance().currentUser
@@ -247,6 +382,12 @@ class MainActivity : AppCompatActivity() {
             finish()
         }
     }
+    companion object {
+        private const val REQUEST_CODE_PERMISSIONS = 10
+        private val REQUIRED_PERMISSIONS = arrayOf(Manifest.permission.CAMERA)
+        private const val FILENAME_FORMAT = "yyyy-MM-dd-HH-mm-ss-SSS"
+    }
+
 
 }
 
